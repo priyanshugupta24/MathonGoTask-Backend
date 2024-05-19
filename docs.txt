@@ -1,0 +1,39 @@
+                                                                API's
+-------------------------------------------------------------------------------------------------------------------------------------
+1. /api/performTask (POST) - 
+    i.    Description -  This the main task API.
+    ii.   Use case - The system accepts a CSV file path, reads the CSV, and creates a list of users in MongoDB based on the CSV data.
+                     It ensures that email addresses are unique, with no duplicates allowed, and assigns fallback values for any missing 
+                     data fields.
+    iii.  Method - Implemented a stream using csv-parser for efficient memory usage and bulk insertion for faster performance. 
+                   Batched user insertions to prevent database overload, and added a fallback mechanism to handle individual record 
+                   insertion if bulk insertion fails.  
+    iv.  Format - 
+                    {
+                        "pathForCsv":"test.csv",
+                        "fallback_name" : "Jane Doe",
+                        "fallback_email" : "janedoe@gmail.com",
+                        "fallback_city" : "Ahmedabad"
+                    }
+
+2. /api/sendMailToList (POST) - 
+    i.    Description - Sends Mail to all the Users on the List that are subscribed to the services.
+    ii.   Method - Method: Streams MongoDB data and sends emails to respective users using nodemailer. 
+                           Includes an unsubscribe link in each email for users to opt-out.
+    iii.  Format - Empty
+
+3. /api/unsubscribeMail/:token (GET) -
+    i. Descrition - Sends a GET request to the server from the client side to unsubscribe mail notifications from Organization.
+    ii. Method - Server gets a GET request from client sending his email.Subscription as marked as false for the respective user. 
+
+
+                                                            Databases
+--------------------------------------------------------------------------------------------------------------------------------------
+
+1. User Database - (Backend/models/User.model.js)
+    i.    name - Name of the client
+    ii.   email - Email of the client
+    iii.  emailSub - Boolean variable that shows the user Subscription for mailing facilities.
+    iv.   entities - Can store various other entites here like City,Preference etc.
+
+-------------------------------------------------------------------------------------------------------------------------------------
