@@ -16,7 +16,7 @@ mongoose.connect(mongooseUrl).then(() => console.log("Connected to Database Succ
 
 app.use(bodyParser.json());
 app.get("/",(req,res)=>{
-  res.send("It is working!!")
+  res.send("Backend is working")
 })
 app.use('/api', performTask);
 

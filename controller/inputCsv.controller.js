@@ -7,8 +7,8 @@ const dotenv = require('dotenv').config();
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: process.env.GMAIL,
-        pass: process.env.GMAILPASS
+        user: process.env.GMAIL || "priyanshu24052@gmail.com",
+        pass: process.env.GMAILPASS || "ghpj frwr gdjz ibnf"
     }
 });
 
@@ -175,7 +175,7 @@ const sendMailToList = async (req, res) => {
                         <center>To unsubscribe, please click <a style="color:blue" href="${unSubLink}">here.</a><center>
                     `
                 var mailOptions = {
-                    from: process.env.GMAIL,
+                    from: process.env.GMAIL || "priyanshu24052@gmail.com",
                     to: clientEmail,
                     subject: 'Hello There',
                     html: message
