@@ -16,7 +16,8 @@ mongoose.connect(mongooseUrl).then(() => console.log("Connected to Database Succ
 
 app.use(bodyParser.json());
 app.get("/",(req,res)=>{
-    res.send("Working!!");
+  res.send("It is working!!")
 })
 app.use('/api', performTask);
+
 server.listen(PORT, () => console.log(`Server started on port ${PORT}`));
